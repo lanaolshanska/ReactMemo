@@ -4,10 +4,9 @@ import Modal from "./Modal";
 import classes from "./PostList.module.css";
 import { useState } from "react";
 
-function PostList(props) {
+function PostList({ posts, isModalVisible, onCloseModal }) {
   const [text, setText] = useState("");
   const [author, setAuthor] = useState("");
-  const [isModalVisible, setIsModalVisible] = useState(true);
 
   function onTextChangeHandler(event) {
     setText(event.target.value);
@@ -17,14 +16,10 @@ function PostList(props) {
     setAuthor(event.target.value);
   }
 
-  function closeModalHandler() {
-    setIsModalVisible(false);
-  }
-
   return (
     <>
       {isModalVisible && (
-        <Modal onClose={closeModalHandler}>
+        <Modal onClose={onCloseModal}>
           <NewPost
             onTextChange={onTextChangeHandler}
             onAuthorChange={onAuthorHandler}
@@ -32,7 +27,7 @@ function PostList(props) {
         </Modal>
       )}
       <ul className={classes.posts}>
-        {props.posts.map((post) => (
+        {posts.map((post) => (
           <Post author={post.author} text={post.text} />
         ))}
         <Post author={author} text={text} />
