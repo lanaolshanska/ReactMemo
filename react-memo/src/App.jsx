@@ -25,7 +25,7 @@ function App() {
     <>
       <Header onCreatePost={openModalHandler} />
       <main>
-        <PostList posts={posts} isModalVisible={isModalVisible} onCloseModal={closeModalHandler} />
+        <PostList data={posts} isModalVisible={isModalVisible} onCloseModal={closeModalHandler} />
       </main>
     </>
   );
